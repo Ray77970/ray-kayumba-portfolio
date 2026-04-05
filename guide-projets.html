@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide — Projekte bearbeiten · Ray Kayumba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #0f0f11;
+    --bg-subtle: #141416;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.18);
+    --text: #fafafa;
+    --text-muted: #a1a1aa;
+    --text-subtle: #52525b;
+    --accent: #DBEC26;
+    --green: #4ade80;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    padding: 0;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 64px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    page-break-after: always;
+  }
+  .cover-label {
+    font-size: 11px;
+    color: var(--text-subtle);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .cover-title span { color: var(--accent); display: block; }
+  .cover-meta {
+    margin-top: 48px;
+    display: flex;
+    gap: 48px;
+    font-size: 11px;
+    color: var(--text-subtle);
+    letter-spacing: .06em;
+  }
+  .cover-meta strong { color: var(--text-muted); }
+  .cover-rule {
+    position: absolute;
+    top: 64px; left: 64px; right: 64px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── PAGE ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 64px;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 64px; page-break-inside: avoid; }
+
+  .section-num {
+    font-size: 11px;
+    color: var(--text-subtle);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title em { color: var(--accent); font-style: normal; }
+
+  p { color: var(--text-muted); margin-bottom: 12px; }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .code-block pre {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .code-block pre .kw  { color: #93c5fd; }
+  .code-block pre .str { color: #86efac; }
+  .code-block pre .cm  { color: var(--text-subtle); font-style: italic; }
+  .code-block pre .hl  { color: var(--accent); }
+
+  .code-label {
+    font-size: 10px;
+    color: var(--text-subtle);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12px;
+  }
+  th {
+    text-align: left;
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+  td:first-child { color: var(--text); font-weight: 500; }
+  td code {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  /* ── STEP CARDS ── */
+  .steps { display: flex; flex-direction: column; gap: 2px; margin: 16px 0; }
+  .step {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .step-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-subtle);
+    padding-top: 1px;
+  }
+  .step-body strong { color: var(--text); display: block; margin-bottom: 3px; font-size: 13px; }
+  .step-body span { color: var(--text-muted); font-size: 12px; }
+
+  /* ── NOTE BOX ── */
+  .note {
+    display: flex;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(219,236,38,.04);
+    border: 1px solid rgba(219,236,38,.15);
+    border-radius: var(--radius);
+    margin: 16px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .note-icon { color: var(--accent); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── FILE TREE ── */
+  .tree {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 16px 0;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .tree .folder { color: var(--text-muted); }
+  .tree .file   { color: var(--text-subtle); padding-left: 20px; }
+  .tree .file.new { color: var(--accent); }
+  .tree .file.new::before { content: '+ '; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #09090b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cover { page-break-after: always; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-rule"></div>
+  <div class="cover-label">Internes Dokument · Webportfolio</div>
+  <div class="cover-title">
+    Projekte<br>
+    <span>Bearbeiten.</span>
+  </div>
+  <div class="cover-meta">
+    <div><strong>Autor</strong><br>Ray Kayumba</div>
+    <div><strong>Stand</strong><br>April 2026</div>
+    <div><strong>Datei</strong><br>guide-projets.html</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-num">Überblick</div>
+    <div class="section-title">Wie Projekte <em>funktionieren</em></div>
+    <p>Jedes Projekt besteht aus zwei Teilen: einer Karte in der Projektübersicht (<code>works.html</code>) und einer Detailseite im Ordner <code>/projects/</code>.</p>
+
+    <div class="tree">
+      <div class="folder">Webportfolio-express/</div>
+      <div class="file">works.html &nbsp;&nbsp;&nbsp;<span style="color:var(--text-subtle)">← Projektliste &amp; Filter</span></div>
+      <div class="file">Images/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text-subtle)">← alle Bilder hier ablegen</span></div>
+      <div class="folder" style="padding-left:20px">projects/</div>
+      <div class="file" style="padding-left:40px">fivebrands-ai.html</div>
+      <div class="file" style="padding-left:40px">rkp-ai-platform.html</div>
+      <div class="file" style="padding-left:40px">ecom-visual-system.html</div>
+      <div class="file" style="padding-left:40px">brand-identity-luxury.html</div>
+      <div class="file new" style="padding-left:40px">mein-neues-projekt.html</div>
+    </div>
+
+    <div class="note">
+      <div class="note-icon">→</div>
+      Jedes Bild im <code>images[]</code>-Array eines Projekts erzeugt eine eigene Karte in der Übersicht — alle verlinken auf dieselbe Detailseite.
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-num">01</div>
+    <div class="section-title">Projekt <em>hinzufügen</em></div>
+
+    <p>Öffne <code>works.html</code> und suche das <code>PROJECTS</code>-Array im <code>&lt;script&gt;</code>-Block (ca. Zeile 80). Füge ein neues Objekt hinzu:</p>
+
+    <div class="code-label">works.html — PROJECTS[]</div>
+    <div class="code-block"><pre><span class="cm">// Neues Objekt in das Array einfügen:</span>
+{
+  <span class="hl">title</span>: <span class="str">'Mein Projektname'</span>,
+  <span class="hl">tags</span>: [<span class="str">'Tag1'</span>, <span class="str">'Tag2'</span>, <span class="str">'Tag3'</span>],
+  <span class="hl">category</span>: <span class="str">'AI'</span>,  <span class="cm">// ← siehe Tabelle unten</span>
+  <span class="hl">link</span>: <span class="str">'projects/mein-neues-projekt.html'</span>,
+  <span class="hl">images</span>: [
+    <span class="str">'Images/foto_01.jpg'</span>,
+    <span class="str">'Images/foto_02.jpg'</span>,
+    <span class="str">'Images/foto_03.jpg'</span>,
+  ]
+}</pre></div>
+
+    <p style="margin-top:16px">Verfügbare Kategorien:</p>
+    <table>
+      <tr><th>category-Wert</th><th>Filterbutton</th><th>Verwendung</th></tr>
+      <tr><td><code>AI</code></td><td>KI</td><td>KI-Projekte, Automationen, Tools</td></tr>
+      <tr><td><code>UI/UX</code></td><td>UI/UX</td><td>Apps, Websites, Dashboards</td></tr>
+      <tr><td><code>Production</code></td><td>Produktion</td><td>Visuelle Produktion, AI-Bilder</td></tr>
+      <tr><td><code>Identity</code></td><td>Identität</td><td>Branding, Logos, Systeme</td></tr>
+    </table>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-num">02</div>
+    <div class="section-title">Detailseite <em>erstellen</em></div>
+
+    <p>Kopiere eine bestehende Datei aus <code>/projects/</code> und benenne sie nach deinem Slug um (z. B. <code>mein-neues-projekt.html</code>).</p>
+
+    <p style="margin-top:8px">Dann passe folgende Stellen an:</p>
+
+    <div class="code-label">1 · Seitentitel (im &lt;head&gt;)</div>
+    <div class="code-block"><pre><span class="kw">&lt;title&gt;</span><span class="hl">Projektname</span> — Ray Kayumba<span class="kw">&lt;/title&gt;</span></pre></div>
+
+    <div class="code-label">2 · Hauptbild (linke Seite)</div>
+    <div class="code-block"><pre><span class="kw">&lt;img</span> <span class="hl">class</span>=<span class="str">"lb-main-img"</span> <span class="hl">id</span>=<span class="str">"mainImg"</span>
+     <span class="hl">src</span>=<span class="str">"../Images/foto_01.jpg"</span>
+     <span class="hl">alt</span>=<span class="str">"Projektname"</span><span class="kw">&gt;</span></pre></div>
+
+    <div class="code-label">3 · Projekttitel &amp; Beschreibung (rechte Seite)</div>
+    <div class="code-block"><pre><span class="kw">&lt;div</span> <span class="hl">class</span>=<span class="str">"lb-proj-title"</span><span class="kw">&gt;</span><span class="hl">Projektname</span><span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;div</span> <span class="hl">class</span>=<span class="str">"lb-proj-desc"</span><span class="kw">&gt;</span><span class="hl">Beschreibung auf Deutsch...</span><span class="kw">&lt;/div&gt;</span></pre></div>
+
+    <div class="code-label">4 · Tags</div>
+    <div class="code-block"><pre><span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"ptag"</span><span class="kw">&gt;</span>Tag1<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"ptag"</span><span class="kw">&gt;</span>Tag2<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"ptag"</span><span class="kw">&gt;</span>Tag3<span class="kw">&lt;/span&gt;</span></pre></div>
+
+    <div class="code-label">5 · Metadaten (aufklappbarer Bereich)</div>
+    <div class="code-block"><pre><span class="cm">&lt;!-- Rolle --&gt;</span>
+<span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"lb-detail-val"</span><span class="kw">&gt;</span><span class="hl">Brand Designer</span><span class="kw">&lt;/span&gt;</span>
+
+<span class="cm">&lt;!-- Art --&gt;</span>
+<span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"lb-detail-val"</span><span class="kw">&gt;</span><span class="hl">Markenidentität</span><span class="kw">&lt;/span&gt;</span>
+
+<span class="cm">&lt;!-- Stack --&gt;</span>
+<span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"lb-detail-val"</span><span class="kw">&gt;</span><span class="hl">Figma · Adobe CC</span><span class="kw">&lt;/span&gt;</span>
+
+<span class="cm">&lt;!-- 4. Feld (frei wählbar: Ergebnis, Bereich, etc.) --&gt;</span>
+<span class="kw">&lt;span</span> <span class="hl">class</span>=<span class="str">"lb-detail-val"</span><span class="kw">&gt;</span><span class="hl">100+ Assets</span><span class="kw">&lt;/span&gt;</span></pre></div>
+
+    <div class="code-label">6 · Bilder-Array für den Slideshow (im &lt;script&gt; unten)</div>
+    <div class="code-block"><pre><span class="kw">const</span> <span class="hl">IMAGES</span> = [
+  <span class="str">'../Images/foto_01.jpg'</span>,
+  <span class="str">'../Images/foto_02.jpg'</span>,
+  <span class="str">'../Images/foto_03.jpg'</span>,
+  <span class="cm">// beliebig viele hinzufügen</span>
+];</pre></div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-num">03</div>
+    <div class="section-title">Kategorie <em>ändern</em></div>
+
+    <p>Öffne <code>works.html</code>, suche das Projekt-Objekt im <code>PROJECTS</code>-Array und ändere nur den <code>category</code>-Wert:</p>
+
+    <div class="code-block"><pre><span class="cm">// Vorher:</span>
+category: <span class="str">'Identity'</span>,
+
+<span class="cm">// Nachher:</span>
+category: <span class="str">'UI/UX'</span>,</pre></div>
+
+    <div class="note">
+      <div class="note-icon">→</div>
+      Der Filterbutton und die Sichtbarkeit in der Übersicht werden automatisch aktualisiert — keine weiteren Änderungen nötig.
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-num">04</div>
+    <div class="section-title">Bilder <em>hinzufügen</em></div>
+
+    <p>Bilder gehören immer in den Ordner <code>Images/</code> im Root des Projekts.</p>
+
+    <table>
+      <tr><th>Referenz in</th><th>Pfad-Syntax</th></tr>
+      <tr><td>works.html</td><td><code>'Images/dateiname.jpg'</code></td></tr>
+      <tr><td>projects/*.html</td><td><code>'../Images/dateiname.jpg'</code></td></tr>
+    </table>
+
+    <div class="note">
+      <div class="note-icon">→</div>
+      JPG empfohlen. Für Web idealerweise unter 400 KB pro Bild komprimieren (z. B. mit <strong>Squoosh</strong> oder <strong>TinyPNG</strong>).
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-num">05</div>
+    <div class="section-title">Zusammenfassung in <em>4 Schritten</em></div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Bilder vorbereiten</strong>
+          <span>JPG-Dateien in den Ordner <code>Images/</code> legen</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>works.html öffnen</strong>
+          <span>Neues Objekt in <code>PROJECTS[]</code> mit title, tags, category, link, images einfügen</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Detailseite duplizieren</strong>
+          <span>Bestehende <code>.html</code> aus <code>/projects/</code> kopieren und umbenennen</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Inhalte anpassen</strong>
+          <span>Titel, Beschreibung, Tags, Metadaten und <code>IMAGES[]</code>-Array bearbeiten</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;font-size:11px;color:var(--text-subtle);letter-spacing:.06em;">
+    <span>Ray Kayumba · Webportfolio</span>
+    <span>guide-projets.html · April 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

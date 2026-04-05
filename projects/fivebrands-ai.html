@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FiveBrandsAI — Ray Kayumba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-dot"></div>
+    Ray Kayumba
+  </a>
+  <div class="nav-center">
+    <a href="../index.html#about">Über mich</a>
+    <a href="../works.html" class="nav-active">Projekte</a>
+    <a href="../index.html#contact">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <div class="badge-avail"><span></span>Verfügbar</div>
+    <a href="../index.html#contact" class="btn-nav">Jetzt anfragen</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">Über mich</a>
+  <a href="../works.html">Projekte</a>
+  <a href="../index.html#contact">Kontakt</a>
+  <a href="../index.html#contact" class="mobile-menu-cta">Jetzt anfragen →</a>
+</div>
+
+<div class="proj-detail-page">
+
+  <!-- LEFT: slideshow -->
+  <div class="lb-left">
+    <div class="lb-img-wrap">
+      <img class="lb-main-img" id="mainImg" src="../Images/Intenso_Ray_Caffee_032.jpg" alt="FiveBrandsAI">
+    </div>
+    <button class="lb-nav lb-prev" id="prevBtn">←</button>
+    <button class="lb-nav lb-next" id="nextBtn">→</button>
+    <div class="lb-thumbs" id="thumbs"></div>
+  </div>
+
+  <!-- RIGHT: info panel -->
+  <div class="lb-right">
+    <div class="lb-right-inner">
+
+      <div class="lb-top-actions">
+        <button class="lb-action-btn" title="Back to work" onclick="document.referrer.includes('works') ? history.back() : location.href='../works.html'">✕</button>
+      </div>
+
+      <div class="lb-meta-header">
+        <div class="lb-avatar">RK</div>
+        <div>
+          <div class="lb-author">Ray Kayumba</div>
+          <div class="lb-date">2024</div>
+        </div>
+      </div>
+
+      <div class="lb-section">
+        <div class="lb-section-label">Project</div>
+        <div class="lb-proj-title">FiveBrandsAI</div>
+      </div>
+
+      <div class="lb-section" style="margin-top:16px">
+        <div class="lb-section-label">Description</div>
+        <div class="lb-proj-desc">Eine KI-gestützte Bildproduktionsagentur von Grund auf aufgebaut. Markenidentität, Midjourney-Pipelines und Kampagnenlieferung im großen Maßstab — für E-Commerce-Marken, die keine Zeit zu verlieren haben.</div>
+      </div>
+
+      <div class="lb-proj-tags" style="margin-top:16px">
+        <span class="ptag">Branding</span>
+        <span class="ptag">AI</span>
+        <span class="ptag">E-commerce</span>
+        <span class="ptag">Direction</span>
+      </div>
+
+      <div class="lb-details-toggle" id="lbToggle">
+        Details anzeigen
+        <span class="lb-chevron" id="lbChevron">∧</span>
+      </div>
+
+      <div class="lb-details-body open" id="lbDetailsBody">
+        <div class="lb-detail-row">
+          <span class="lb-detail-key">Rolle</span>
+          <span class="lb-detail-val">Gründer & Creative Director</span>
+        </div>
+        <div class="lb-detail-row">
+          <span class="lb-detail-key">Art</span>
+          <span class="lb-detail-val">Agentur / Startup</span>
+        </div>
+        <div class="lb-detail-row">
+          <span class="lb-detail-key">Stack</span>
+          <span class="lb-detail-val">Midjourney · Figma · Prompt Eng.</span>
+        </div>
+        <div class="lb-detail-row">
+          <span class="lb-detail-key">Markt</span>
+          <span class="lb-detail-val">Europa & Afrika</span>
+        </div>
+      </div>
+
+      <div class="lb-cta-grid lb-cta-single" style="margin-top:24px">
+        <a href="../index.html#contact" class="lb-cta-btn lb-cta-primary">Kontakt aufnehmen →</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="../script.js"></script>
+<script>
+const IMAGES = [
+  '../Images/Intenso_Ray_Caffee_032.jpg',
+  '../Images/Intenso_Ray_Caffee_119.jpg',
+  '../Images/Intenso_Ray_Caffee_194.jpg',
+  '../Images/Intenso_Ray_Caffee_216.jpg',
+  '../Images/Intenso_Ray_Caffee_224.jpg',
+  '../Images/Intenso_Ray_Caffee_287.jpg',
+];
+
+let current = 0;
+const mainImg = document.getElementById('mainImg');
+const thumbsEl = document.getElementById('thumbs');
+
+function renderThumbs() {
+  thumbsEl.innerHTML = IMAGES.map((src, i) => `
+    <div class="lb-thumb ${i === current ? 'active' : ''}" data-i="${i}">
+      <img src="${src}" alt="" loading="lazy">
+    </div>
+  `).join('');
+  thumbsEl.querySelectorAll('.lb-thumb').forEach(th => {
+    th.addEventListener('click', () => { current = parseInt(th.dataset.i); go(); });
+  });
+  const active = thumbsEl.querySelector('.lb-thumb.active');
+  if (active) thumbsEl.scrollLeft = active.offsetLeft - thumbsEl.offsetWidth / 2 + active.offsetWidth / 2;
+}
+
+function go() {
+  mainImg.style.opacity = '0';
+  setTimeout(() => { mainImg.src = IMAGES[current]; mainImg.style.opacity = '1'; }, 120);
+  renderThumbs();
+}
+
+function navigate(dir, e) {
+  if (e) { e.preventDefault(); e.currentTarget.blur(); }
+  current = (current + dir + IMAGES.length) % IMAGES.length;
+  go();
+}
+
+document.getElementById('prevBtn').addEventListener('click', (e) => navigate(-1, e));
+document.getElementById('nextBtn').addEventListener('click', (e) => navigate(1, e));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')  navigate(-1);
+  if (e.key === 'ArrowRight') navigate(1);
+});
+
+// accordion
+const toggle = document.getElementById('lbToggle');
+const body   = document.getElementById('lbDetailsBody');
+const chev   = document.getElementById('lbChevron');
+let open = true;
+toggle.addEventListener('click', () => {
+  open = !open;
+  body.classList.toggle('open', open);
+  chev.style.transform = open ? '' : 'rotate(180deg)';
+});
+
+renderThumbs();
+</script>
+</body>
+</html>

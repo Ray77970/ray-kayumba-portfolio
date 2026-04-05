@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ray Kayumba — Designer & KI-Spezialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Inter:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-dot"></div>
+    Ray Kayumba
+  </a>
+  <div class="nav-center">
+    <a href="#about">Über mich</a>
+    <a href="works.html">Projekte</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <div class="badge-avail"><span></span>Verfügbar</div>
+    <a href="#contact" class="btn-nav">Jetzt anfragen</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Über mich</a>
+  <a href="works.html">Projekte</a>
+  <a href="#contact">Kontakt</a>
+  <a href="#contact" class="mobile-menu-cta">Jetzt anfragen →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-floats">
+    <span class="hero-float hf-2">Anreise nach Deutschland.<br>19 Jahre alt.</span>
+    <span class="hero-float hf-1">Neue Sprache.<br>Neues System.</span>
+    <span class="hero-float hf-3">Neue Kultur.<br>Neue Freundschaften.</span>
+    <span class="hero-float hf-4">Ein weiteres Jahr<br>Sprachkurse.</span>
+    <span class="hero-float hf-6">Ausbildung als<br>Mediengestalter.</span>
+    <span class="hero-float hf-5">Ausbildung als<br>Screen Designer.</span>
+    <span class="hero-float hf-7">Bereit für den nächsten Schritt.</span>
+    <span class="hero-float hf-8">Heute.<br>27 Jahre alt.</span>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-h1">RAYMOND<br>KAYUMBA</h1>
+    <div class="hero-role">Digital Designer</div>
+  </div>
+</section>
+
+<hr class="sep">
+<div class="hero-stats">
+    <div class="hero-stat">
+      <div class="stat-val">8</div>
+      <div class="stat-label">Jahre im Design</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-val">10+</div>
+      <div class="stat-label">KI-Tools im Einsatz</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-val">6</div>
+      <div class="stat-label">Apps & Websites live</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-val">100+</div>
+      <div class="stat-label">Assets geliefert</div>
+    </div>
+  </div>
+<!-- ABOUT -->
+<div class="container" id="about">
+  
+  <div class="sec-header reveal">
+    <div class="sec-chip">Über mich</div>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="reveal">Abschluss in der Tasche.<br><em>KI im Nacken.</em></h2>
+  <div class="about-grid">
+
+    <!-- LEFT: info, no card wrapper -->
+    <div class="about-info reveal">
+      <p class="about-bio">Ausgebildeter Designer, der sich aktiv mit KI weiterentwickelt. Mit STAFFRUN habe ich direkt nach dem Abschluss eine Event-Management-App für ein Eventsunternehmen gebaut und gesehen, was heute wirklich möglich ist. Heute suche ich eine Stelle, wo ich wachsen und mitgestalten kann.</p>
+      
+
+      <a href="Images/CV_Web_DE.pdf" download class="cv-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Lebenslauf herunterladen
+      </a>
+
+      <div class="about-info-label">Expertise</div>
+      <div class="about-badges">
+        <span class="expbadge">Markenidentität</span>
+        <span class="expbadge">UI / UX Design</span>
+        <span class="expbadge">KI-Bildproduktion</span>
+        <span class="expbadge">Creative Direction</span>
+        <span class="expbadge">Design Systeme</span>
+        <span class="expbadge">E-Commerce</span>
+      </div>
+
+      <hr class="about-sep">
+
+      <div class="about-info-label">Stack</div>
+      <div class="stack-tags">
+        <span class="stag">Figma</span>
+        <span class="stag">React</span>
+        <span class="stag">Firebase</span>
+        <span class="stag">Midjourney</span>
+        <span class="stag">Stable Diffusion</span>
+        <span class="stag">Prompt Eng.</span>
+        <span class="stag">Runway</span>
+        <span class="stag">Stripe</span>
+      </div>
+
+      <hr class="about-sep">
+
+      <div class="about-info-label">Sprachen</div>
+      <div class="about-badges">
+        <span class="expbadge">Französisch (Muttersprache)</span>
+        <span class="expbadge">Deutsch</span>
+        <span class="expbadge">Englisch</span>
+        <span class="expbadge">Lingala</span>
+      </div>
+
+      <hr class="about-sep">
+
+      <div class="about-info-label">Interessen</div>
+      <div class="about-badges">
+        <span class="expbadge">Musik</span>
+        <span class="expbadge">Lesen</span>
+        <span class="expbadge">Fußball</span>
+        <span class="expbadge">Psychologie</span>
+        <span class="expbadge">Gaming</span>
+        <span class="expbadge">Persönliche Entwicklung</span>
+        <span class="expbadge">Technologie & Innovation</span>
+        <span class="expbadge">Künstliche Intelligenz</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: stacked photos -->
+    <div class="about-stack reveal">
+      <div class="astack-card asc-4"><img src="Images/Intenso_Ray_Uni_038.jpg" alt=""></div>
+      <div class="astack-card asc-3"><img src="Images/Intenso_Ray_Caffee_032.jpg" alt=""></div>
+      <div class="astack-card asc-2"><img src="Images/Intenso_Ray_Promenade_051.jpg" alt=""></div>
+      <div class="astack-card asc-1"><img src="Images/Intenso_Ray_Influencer_041.jpg" alt=""></div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- PROJECTS -->
+<div class="container" id="projects">
+  <div class="sec-header reveal">
+    <div class="sec-chip">Projekte</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="proj-header reveal">
+    <h2 style="margin-bottom:0">Ausgewählte Projekte.<br><em>Echte Ergebnisse.</em></h2>
+    <a href="works.html" class="proj-more-btn">Alle Projekte →</a>
+  </div>
+  <!-- FX pinned scroll -->
+  <div class="fx-outer" id="fxOuter">
+    <div class="fx-pin" id="fxPin">
+
+      <!-- Backgrounds -->
+      <div class="fx-bgs" aria-hidden="true">
+        <div class="fx-bg"><img src="Images/Intenso_Ray_Caffee_032.jpg" class="fx-bg-img" alt=""><div class="fx-bg-overlay"></div></div>
+        <div class="fx-bg"><img src="Images/Intenso_Ray_Uni_038.jpg" class="fx-bg-img" alt=""><div class="fx-bg-overlay"></div></div>
+        <div class="fx-bg"><img src="Images/Intenso_Ray_Influencer_041.jpg" class="fx-bg-img" alt=""><div class="fx-bg-overlay"></div></div>
+        <div class="fx-bg"><img src="Images/Intenso_Ray_Promenade_051.jpg" class="fx-bg-img" alt=""><div class="fx-bg-overlay"></div></div>
+      </div>
+
+      <!-- Layout -->
+      <div class="fx-layout">
+
+        <div class="fx-col fx-col-left">
+          <div class="fx-track" id="fxLeftTrack">
+            <div class="fx-item fx-left-item">01</div>
+            <div class="fx-item fx-left-item">02</div>
+            <div class="fx-item fx-left-item">03</div>
+            <div class="fx-item fx-left-item">04</div>
+          </div>
+        </div>
+
+        <div class="fx-col fx-col-center">
+          <div class="fx-titles">
+            <div class="fx-title"><a href="projects/fivebrands-ai.html" class="fx-title-link">FIVEBRANDS<span class="fx-title-accent">AI</span></a></div>
+            <div class="fx-title"><a href="projects/rkp-ai-platform.html" class="fx-title-link">RKP AI<span class="fx-title-accent">PLATFORM</span></a></div>
+            <div class="fx-title"><a href="projects/ecom-visual-system.html" class="fx-title-link">E-COM<span class="fx-title-accent">VISUAL</span></a></div>
+            <div class="fx-title"><a href="projects/brand-identity-luxury.html" class="fx-title-link">BRAND<span class="fx-title-accent">IDENTITY</span></a></div>
+          </div>
+        </div>
+
+        <div class="fx-col fx-col-right">
+          <div class="fx-track" id="fxRightTrack">
+            <div class="fx-item fx-right-item"><div class="fx-item-cat">AI · Branding · E-commerce</div></div>
+            <div class="fx-item fx-right-item"><div class="fx-item-cat">UI/UX · SaaS · React</div></div>
+            <div class="fx-item fx-right-item"><div class="fx-item-cat">Prompt Eng. · Fashion · Production</div></div>
+            <div class="fx-item fx-right-item"><div class="fx-item-cat">Identity · Luxury · Typography</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Progress -->
+      <div class="fx-progress">
+        <div class="fx-progress-nums">
+          <span id="fxCurrent">01</span>
+          <span>04</span>
+        </div>
+        <div class="fx-progress-track">
+          <div class="fx-progress-fill" id="fxFill"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <a href="works.html" class="proj-more-mobile">Alle Projekte →</a>
+</div>
+
+<hr class="sep">
+
+<!-- AVAILABILITY -->
+<div class="container" id="availability">
+  <div class="sec-header reveal">
+    <div class="sec-chip">Bereit</div>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="reveal">Was Du wissen solltest,<br><em>bevor Du anfragst.</em></h2>
+
+  <div class="avail-block reveal">
+
+    <div class="avail-col">
+      <div class="avail-label">Verfügbarkeit</div>
+      <div class="avail-value">Ab sofort<br>April 2026</div>
+    </div>
+
+    <div class="avail-col">
+      <div class="avail-label">Standort</div>
+      <div class="avail-value">Pinneberg, Deutschland</div>
+      <span class="avail-tag">Full Remote möglich</span>
+    </div>
+
+    <div class="avail-col">
+      <div class="avail-label">Warum ich?</div>
+      <p class="avail-pitch">Ich designe, ich entwickle und ich halte Schritt mit dem, was KI gerade möglich macht. Das bedeutet bessere Ergebnisse in weniger Zeit.</p>
+    </div>
+
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- CONTACT -->
+<div class="container" id="contact">
+  <div class="sec-header reveal">
+    <div class="sec-chip">Kontakt</div>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="reveal">Interesse?<br><em>Ich freue mich auf Deine Nachricht.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-card reveal">
+      <p>Ob Festanstellung, Freelance oder einfach ein erstes Kennenlernen. Ich bin offen und antworte gerne.</p>
+      <a href="mailto:jraymondkayumba@gmail.com" class="email-link">
+        <span class="email-icon">✉</span>
+        jraymondkayumba@gmail.com
+      </a>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/raymond-kayumba-2b726012a/" class="soc-btn">LinkedIn</a>
+       
+        
+        <a href="https://www.instagram.com/rkp.designs/" class="soc-btn">Instagram</a>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <div class="form-head">Nachricht senden</div>
+      <form class="form-body" onsubmit="handleSubmit(event)">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Dein Name" required>
+        </div>
+        <div class="field">
+          <label>E-Mail</label>
+          <input type="email" name="email" placeholder="du@unternehmen.de" required>
+        </div>
+        <div class="field">
+          <label>Nachricht</label>
+          <textarea name="message" placeholder="Deine Nachricht..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Absenden</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Ray Kayumba</span>
+  <div class="footer-nav">
+    <a href="#about">Über mich</a>
+    <a href="#projects">Projekte</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+  <span>Deutschland · Europa · Afrika</span>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ── FX Projects Scroll ──
+gsap.registerPlugin(ScrollTrigger);
+
+(function() {
+  const TOTAL = 4;
+  let currentFx = 0;
+  let isAnim = false;
+
+  const bgs        = document.querySelectorAll('.fx-bg-img');
+  const titles     = document.querySelectorAll('.fx-title');
+  const leftItems  = document.querySelectorAll('.fx-left-item');
+  const rightItems = document.querySelectorAll('.fx-right-item');
+  const leftTrack  = document.getElementById('fxLeftTrack');
+  const rightTrack = document.getElementById('fxRightTrack');
+  const fillEl     = document.getElementById('fxFill');
+  const curEl      = document.getElementById('fxCurrent');
+
+  if (!bgs.length) return;
+
+  // Initial state
+  gsap.set(bgs, { opacity: 0, scale: 1.06 });
+  gsap.set(bgs[0], { opacity: 1, scale: 1 });
+  titles.forEach((t, i) => gsap.set(t, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 40 }));
+  leftItems.forEach((el, i) => { el.classList.toggle('active', i === 0); gsap.set(el, { opacity: i === 0 ? 1 : 0.3 }); });
+  rightItems.forEach((el, i) => { el.classList.toggle('active', i === 0); gsap.set(el, { opacity: i === 0 ? 1 : 0.3 }); });
+
+  function centerTrack(track, items, toIndex) {
+    if (!track || !items.length) return;
+    const rowH = items[0].offsetHeight + 12;
+    const trackH = track.parentElement.offsetHeight;
+    const y = trackH / 2 - rowH / 2 - toIndex * rowH;
+    gsap.to(track, { y, duration: 0.6, ease: 'power3.out' });
+  }
+
+  function changeSection(to) {
+    if (to === currentFx || isAnim) return;
+    const from = currentFx;
+    const D = 0.65;
+    isAnim = true;
+
+    if (fillEl) fillEl.style.width = (to / (TOTAL - 1)) * 100 + '%';
+    if (curEl) curEl.textContent = String(to + 1).padStart(2, '0');
+
+    gsap.to(bgs[from], { opacity: 0, scale: 1.04, duration: D, ease: 'power2.out' });
+    gsap.set(bgs[to], { opacity: 0, scale: 1.06 });
+    gsap.to(bgs[to], { opacity: 1, scale: 1, duration: D, ease: 'power2.out' });
+
+    gsap.to(titles[from], { opacity: 0, y: to > from ? -30 : 30, duration: D * 0.6, ease: 'power3.out' });
+    gsap.fromTo(titles[to], { opacity: 0, y: to > from ? 40 : -40 }, { opacity: 1, y: 0, duration: D, ease: 'power3.out', delay: 0.05 });
+
+    [leftItems, rightItems].forEach(items => {
+      items.forEach((el, i) => {
+        el.classList.toggle('active', i === to);
+        gsap.to(el, { opacity: i === to ? 1 : 0.3, duration: D * 0.5, ease: 'power2.out' });
+      });
+    });
+    centerTrack(leftTrack, Array.from(leftItems), to);
+    centerTrack(rightTrack, Array.from(rightItems), to);
+
+    currentFx = to;
+    setTimeout(() => { isAnim = false; }, D * 1000);
+  }
+
+  requestAnimationFrame(() => {
+    centerTrack(leftTrack, Array.from(leftItems), 0);
+    centerTrack(rightTrack, Array.from(rightItems), 0);
+  });
+
+  ScrollTrigger.create({
+    trigger: '#fxOuter',
+    start: 'top top',
+    end: 'bottom bottom',
+    pin: '#fxPin',
+    pinSpacing: true,
+    onUpdate(self) {
+      if (isAnim) return;
+      const target = Math.min(TOTAL - 1, Math.floor(self.progress * TOTAL));
+      if (target !== currentFx) changeSection(target);
+    }
+  });
+})();
+</script>
+<script>
+(function(){
+  const stackEl = document.querySelector('.about-stack');
+  if (!stackEl) return;
+
+  // stackOrder[0] = bottom, stackOrder[3] = top
+  let stackOrder = Array.from(stackEl.querySelectorAll('.astack-card'));
+
+  const POS = ['sp-4','sp-3','sp-2','sp-1']; // index 0 = bottom, 3 = top
+
+  function applyPositions() {
+    stackOrder.forEach((card, i) => {
+      card.classList.remove('sp-1','sp-2','sp-3','sp-4');
+      card.classList.add(POS[i]);
+    });
+  }
+
+  // Set initial positions (hidden)
+  applyPositions();
+
+  // Reveal cards with stagger when section enters viewport
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    stackOrder.forEach((card, i) => {
+      setTimeout(() => card.classList.add('shown'), i * 120);
+    });
+    obs.disconnect();
+  }, { threshold: 0.25 });
+  obs.observe(stackEl);
+
+  // Tap/click → bottom card comes to the top
+  stackEl.addEventListener('click', () => {
+    const bottom = stackOrder[0];
+    stackOrder = [...stackOrder.slice(1), bottom];
+    applyPositions();
+  });
+})();
+</script>
+</body>
+</html>

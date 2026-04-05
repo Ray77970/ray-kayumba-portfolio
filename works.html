@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projekte — Ray Kayumba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-dot"></div>
+    Ray Kayumba
+  </a>
+  <div class="nav-center">
+    <a href="index.html#about">Über mich</a>
+    <a href="works.html" class="nav-active">Projekte</a>
+    <a href="index.html#contact">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <div class="badge-avail"><span></span>Verfügbar</div>
+    <a href="index.html#contact" class="btn-nav">Jetzt anfragen</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about">Über mich</a>
+  <a href="works.html">Projekte</a>
+  <a href="index.html#contact">Kontakt</a>
+  <a href="index.html#contact" class="mobile-menu-cta">Jetzt anfragen →</a>
+</div>
+
+<div id="works-page">
+
+  <div class="works-header">
+    <div class="sec-header">
+      <div class="sec-chip">Projekte</div>
+      <div class="sec-line"></div>
+    </div>
+    <h2 style="margin-bottom:0">Ausgewählte Projekte.<br><em>Reales und Konzeptuelles.</em></h2>
+  </div>
+
+  <div class="works-body">
+    <div class="works-filter">
+      <button class="works-tab active" data-filter="all">Alle</button>
+      <div class="works-sep"></div>
+      <button class="works-tab" data-filter="AI">KI</button>
+      <button class="works-tab" data-filter="UI/UX">UI/UX</button>
+      <button class="works-tab" data-filter="Production">Produktion</button>
+      <button class="works-tab" data-filter="Identity">Identität</button>
+    </div>
+
+    <div class="works-grid" id="worksGrid"></div>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2026 Ray Kayumba</span>
+  <div class="footer-nav">
+    <a href="index.html#about">Über mich</a>
+    <a href="works.html">Projekte</a>
+    <a href="index.html#contact">Kontakt</a>
+  </div>
+  <span>Deutschland · Europa · Afrika</span>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const PROJECTS = [
+  {
+    title: 'FiveBrandsAI',
+    tags: ['Branding', 'AI', 'E-commerce', 'Direction'],
+    category: 'AI',
+    link: 'projects/fivebrands-ai.html',
+    images: [
+      'Images/Intenso_Ray_Caffee_032.jpg',
+      'Images/Intenso_Ray_Caffee_119.jpg',
+      'Images/Intenso_Ray_Caffee_194.jpg',
+      'Images/Intenso_Ray_Caffee_216.jpg',
+      'Images/Intenso_Ray_Caffee_224.jpg',
+      'Images/Intenso_Ray_Caffee_287.jpg',
+    ]
+  },
+  {
+    title: 'RKP AI Platform',
+    tags: ['UI/UX', 'SaaS', 'React', 'Design System'],
+    category: 'UI/UX',
+    link: 'projects/rkp-ai-platform.html',
+    images: [
+      'Images/Intenso_Ray_Uni_038.jpg',
+      'Images/Intenso_Ray_Uni_065.jpg',
+      'Images/Intenso_Ray_Uni_228.jpg',
+      'Images/Intenso_Ray_Uni_254.jpg',
+      'Images/Intenso_Ray_Uni_260.jpg',
+      'Images/Intenso_Ray_Uni_314.jpg',
+    ]
+  },
+  {
+    title: 'E-com Visual System',
+    tags: ['Prompt Eng.', 'Fashion', 'Production'],
+    category: 'Production',
+    link: 'projects/ecom-visual-system.html',
+    images: [
+      'Images/Intenso_Ray_Influencer_041.jpg',
+      'Images/Intenso_Ray_Influencer_091.jpg',
+      'Images/Intenso_Ray_Influencer_232.jpg',
+      'Images/Intenso_Ray_Influencer_246.jpg',
+      'Images/Intenso_Ray_Influencer_281.jpg',
+      'Images/Intenso_Ray_Influencer_399.jpg',
+      'Images/Intenso_Ray_Influencer_448.jpg',
+    ]
+  },
+  {
+    title: 'Brand Identity — Luxury',
+    tags: ['Identity', 'Luxury', 'Typography'],
+    category: 'Identity',
+    link: 'projects/brand-identity-luxury.html',
+    images: [
+      'Images/Intenso_Ray_Promenade_051.jpg',
+      'Images/Intenso_Ray_Promenade_103.jpg',
+      'Images/Intenso_Ray_Promenade_125.jpg',
+      'Images/Intenso_Ray_Promenade_221.jpg',
+      'Images/Intenso_Ray_Promenade_296.jpg',
+      'Images/Intenso_Ray_Spaziergang_161.jpg',
+      'Images/Intenso_Ray_Spaziergang_395.jpg',
+      'Images/Intenso_Ray_Spaziergang_635.jpg',
+    ]
+  }
+];
+
+const grid = document.getElementById('worksGrid');
+
+PROJECTS.forEach(proj => {
+  proj.images.forEach(src => {
+    const card = document.createElement('a');
+    card.className = 'work-card';
+    card.href = proj.link;
+    card.dataset.category = proj.category;
+    card.innerHTML = `
+      <img class="work-img" src="${src}" alt="${proj.title}" loading="lazy">
+      <div class="work-overlay">
+        <div class="work-overlay-title">${proj.title}</div>
+        <div class="work-overlay-tags">
+          ${proj.tags.map(t => `<span class="ptag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="work-cat-badge">${proj.category}</div>
+    `;
+    grid.appendChild(card);
+  });
+});
+
+function applyFilter(f) {
+  document.querySelectorAll('.works-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.filter === f);
+  });
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.classList.toggle('hidden', f !== 'all' && card.dataset.category !== f);
+  });
+  history.replaceState(null, '', f === 'all' ? '#' : '#' + encodeURIComponent(f));
+}
+
+document.querySelectorAll('.works-tab').forEach(tab => {
+  tab.addEventListener('click', () => applyFilter(tab.dataset.filter));
+});
+
+// Save scroll before navigating to a project
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.work-card');
+  if (card) sessionStorage.setItem('works_scroll', window.scrollY);
+});
+
+// Restore filter + scroll on load
+const savedFilter = decodeURIComponent((location.hash || '#all').slice(1)) || 'all';
+applyFilter(savedFilter);
+
+const savedScroll = sessionStorage.getItem('works_scroll');
+if (savedScroll) {
+  requestAnimationFrame(() => {
+    window.scrollTo(0, parseInt(savedScroll));
+    sessionStorage.removeItem('works_scroll');
+  });
+}
+</script>
+</body>
+</html>
