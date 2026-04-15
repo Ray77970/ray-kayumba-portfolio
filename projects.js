@@ -106,7 +106,6 @@ const PROJECTS = [
     'bykis-2.jpg',
     'bykis-3.jpg',
     'bykis-4.jpg',
-    'bykis-5.jpg',
     'bykis-6.jpg',
     'bykis-7.jpg',
     'bykis-8.jpg',
