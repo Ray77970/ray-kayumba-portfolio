@@ -322,6 +322,8 @@ footer{border-top:1px solid var(--border);padding:22px 32px;display:flex;justify
   .fx-layout{padding:0 20px}
   .fx-item-cat{display:none}
   .fx-progress{left:20px;right:20px;bottom:28px}
+  .fx-bg-img{inset:0;height:100%;width:100%;object-fit:cover}
+  nav{position:fixed!important;top:0;left:0;right:0;z-index:500}
 }
 
 /* ── project pages ── */
