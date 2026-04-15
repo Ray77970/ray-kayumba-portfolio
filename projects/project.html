@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projekt — Ray Kayumba</title>
+<link rel="icon" type="image/png" href="../Images/RKP_fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-dot"></div>
+    RAY KAYUMBA
+  </a>
+  <div class="nav-center">
+    <a href="../index.html#about">Über mich</a>
+    <a href="../works.html" class="nav-active">Projekte</a>
+    <a href="../index.html#contact">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <div class="badge-avail"><span></span>Verfügbar</div>
+    <a href="../index.html#contact" class="btn-nav">Jetzt anfragen</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">Über mich</a>
+  <a href="../works.html">Projekte</a>
+  <a href="../index.html#contact">Kontakt</a>
+  <a href="../index.html#contact" class="mobile-menu-cta">Jetzt anfragen →</a>
+</div>
+
+<div class="proj-detail-page" id="detailPage">
+
+  <!-- LEFT: slideshow -->
+  <div class="lb-left">
+    <div class="lb-img-wrap">
+      <img class="lb-main-img" id="mainImg" src="" alt="">
+    </div>
+    <button class="lb-nav lb-prev" id="prevBtn">←</button>
+    <button class="lb-nav lb-next" id="nextBtn">→</button>
+    <div class="lb-thumbs" id="thumbs"></div>
+  </div>
+
+  <!-- RIGHT: info panel -->
+  <div class="lb-right">
+    <div class="lb-right-inner">
+
+      <div class="lb-top-actions">
+        <button class="lb-action-btn" id="closeBtn" title="Zurück zu Projekten">✕</button>
+      </div>
+
+      <div class="lb-meta-header">
+        <div class="lb-avatar"><img src="../Images/avatar_ray.jpg" alt="Ray Kayumba" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+        <div>
+          <div class="lb-author">Ray Kayumba</div>
+          <div class="lb-date" id="projYear"></div>
+        </div>
+      </div>
+
+      <div class="lb-section">
+        <div class="lb-section-label">Projekt</div>
+        <div class="lb-proj-title" id="projTitle"></div>
+      </div>
+
+      <div class="lb-section" style="margin-top:16px">
+        <div class="lb-section-label">Beschreibung</div>
+        <div class="lb-proj-desc" id="projDesc"></div>
+      </div>
+
+      <div class="lb-proj-tags" id="projTags" style="margin-top:16px"></div>
+
+      <div class="lb-details-toggle" id="lbToggle">
+        Details anzeigen
+        <span class="lb-chevron" id="lbChevron">∧</span>
+      </div>
+
+      <div class="lb-details-body open" id="lbDetailsBody"></div>
+
+      <div class="lb-cta-grid lb-cta-single" style="margin-top:24px">
+        <a href="../index.html#contact" class="lb-cta-btn lb-cta-primary">Kontakt aufnehmen</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="../projects.js"></script>
+<script src="../script.js"></script>
+<script>
+// ── Lire le slug depuis l'URL ──────────────────────────────────────────────
+const slug = new URLSearchParams(location.search).get('slug');
+const proj = PROJECTS.find(p => p.slug === slug);
+
+if (!proj) {
+  location.href = '../works.html';
+}
+
+// ── Remplir le titre de la page ───────────────────────────────────────────
+document.title = proj.title + ' — Ray Kayumba';
+
+// ── Remplir le panneau droit ──────────────────────────────────────────────
+document.getElementById('projYear').textContent = proj.year || '';
+document.getElementById('projTitle').textContent = proj.title;
+document.getElementById('projDesc').textContent = proj.description;
+
+const tagsEl = document.getElementById('projTags');
+proj.tags.forEach(t => {
+  const s = document.createElement('span');
+  s.className = 'ptag';
+  s.textContent = t;
+  tagsEl.appendChild(s);
+});
+
+const details = document.getElementById('lbDetailsBody');
+const rows = [
+  { key: 'Rolle', val: proj.role },
+  { key: 'Art',   val: proj.type },
+  { key: 'Stack', val: proj.stack },
+];
+if (proj.extra) rows.push({ key: proj.extra.key, val: proj.extra.val });
+
+rows.forEach(r => {
+  details.innerHTML += `
+    <div class="lb-detail-row">
+      <span class="lb-detail-key">${r.key}</span>
+      <span class="lb-detail-val">${r.val}</span>
+    </div>`;
+});
+
+// ── Slideshow ─────────────────────────────────────────────────────────────
+// Les images sont dans Images/{slug}/ relatif à la racine du site,
+// mais ce fichier est dans projects/ → préfixe ../
+const IMAGES = proj.images.map(img => '../' + proj.folder + '/' + img);
+let current = 0;
+const mainImg = document.getElementById('mainImg');
+const thumbsEl = document.getElementById('thumbs');
+
+mainImg.src = IMAGES[0];
+mainImg.alt = proj.title;
+
+function renderThumbs() {
+  thumbsEl.innerHTML = IMAGES.map((src, i) => `
+    <div class="lb-thumb ${i === current ? 'active' : ''}" data-i="${i}">
+      <img src="${src}" alt="" loading="lazy">
+    </div>
+  `).join('');
+  thumbsEl.querySelectorAll('.lb-thumb').forEach(th => {
+    th.addEventListener('click', () => { current = parseInt(th.dataset.i); go(); });
+  });
+  const active = thumbsEl.querySelector('.lb-thumb.active');
+  if (active) thumbsEl.scrollLeft = active.offsetLeft - thumbsEl.offsetWidth / 2 + active.offsetWidth / 2;
+}
+
+function go() {
+  mainImg.style.opacity = '0';
+  setTimeout(() => { mainImg.src = IMAGES[current]; mainImg.style.opacity = '1'; }, 120);
+  renderThumbs();
+}
+
+function navigate(dir, e) {
+  if (e) { e.preventDefault(); e.currentTarget.blur(); }
+  current = (current + dir + IMAGES.length) % IMAGES.length;
+  go();
+}
+
+document.getElementById('prevBtn').addEventListener('click', e => navigate(-1, e));
+document.getElementById('nextBtn').addEventListener('click', e => navigate(1, e));
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')  navigate(-1);
+  if (e.key === 'ArrowRight') navigate(1);
+});
+
+// ── Bouton fermer ─────────────────────────────────────────────────────────
+document.getElementById('closeBtn').addEventListener('click', () => {
+  if (document.referrer.includes('works')) history.back();
+  else location.href = '../works.html';
+});
+
+// ── Accordion ─────────────────────────────────────────────────────────────
+const toggle = document.getElementById('lbToggle');
+const body   = document.getElementById('lbDetailsBody');
+const chev   = document.getElementById('lbChevron');
+let open = true;
+toggle.addEventListener('click', () => {
+  open = !open;
+  body.classList.toggle('open', open);
+  chev.style.transform = open ? '' : 'rotate(180deg)';
+});
+
+renderThumbs();
+</script>
+</body>
+</html>

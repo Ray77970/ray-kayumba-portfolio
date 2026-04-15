@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projekte — Ray Kayumba</title>
+<link rel="icon" type="image/png" href="Images/RKP_fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +17,7 @@
 <nav>
   <a href="index.html" class="nav-logo">
     <div class="nav-dot"></div>
-    Ray Kayumba
+    RAY KAYUMBA
   </a>
   <div class="nav-center">
     <a href="index.html#about">Über mich</a>
@@ -47,21 +48,20 @@
       <div class="sec-chip">Projekte</div>
       <div class="sec-line"></div>
     </div>
-    <h2 style="margin-bottom:0">Ausgewählte Projekte.<br><em>Reales und Konzeptuelles.</em></h2>
+    <h2 style="margin-bottom:10">Ausgewählte Projekte.<br><em>Reales und Konzeptuelles.</em></h2>
   </div>
 
-  <div class="works-body">
-    <div class="works-filter">
-      <button class="works-tab active" data-filter="all">Alle</button>
-      <div class="works-sep"></div>
-      <button class="works-tab" data-filter="AI">KI</button>
-      <button class="works-tab" data-filter="UI/UX">UI/UX</button>
-      <button class="works-tab" data-filter="Production">Produktion</button>
-      <button class="works-tab" data-filter="Identity">Identität</button>
-    </div>
-
-    <div class="works-grid" id="worksGrid"></div>
+  <div class="works-filter">
+    <button class="works-tab active" data-filter="all">Alle</button>
+    <div class="works-sep"></div>
+    <button class="works-tab" data-filter="AI">KI</button>
+    <button class="works-tab" data-filter="UI/UX">UI/UX</button>
+    <button class="works-tab" data-filter="Production">Produktion</button>
+    <button class="works-tab" data-filter="Identity">Branding</button>
+    <button class="works-tab" data-filter="Social Media">Social Media</button>
   </div>
+
+  <div class="works-grid" id="worksGrid"></div>
 
 </div>
 
@@ -75,90 +75,29 @@
   <span>Deutschland · Europa · Afrika</span>
 </footer>
 
+<script src="projects.js"></script>
 <script src="script.js"></script>
 <script>
-const PROJECTS = [
-  {
-    title: 'FiveBrandsAI',
-    tags: ['Branding', 'AI', 'E-commerce', 'Direction'],
-    category: 'AI',
-    link: 'projects/fivebrands-ai.html',
-    images: [
-      'Images/Intenso_Ray_Caffee_032.jpg',
-      'Images/Intenso_Ray_Caffee_119.jpg',
-      'Images/Intenso_Ray_Caffee_194.jpg',
-      'Images/Intenso_Ray_Caffee_216.jpg',
-      'Images/Intenso_Ray_Caffee_224.jpg',
-      'Images/Intenso_Ray_Caffee_287.jpg',
-    ]
-  },
-  {
-    title: 'RKP AI Platform',
-    tags: ['UI/UX', 'SaaS', 'React', 'Design System'],
-    category: 'UI/UX',
-    link: 'projects/rkp-ai-platform.html',
-    images: [
-      'Images/Intenso_Ray_Uni_038.jpg',
-      'Images/Intenso_Ray_Uni_065.jpg',
-      'Images/Intenso_Ray_Uni_228.jpg',
-      'Images/Intenso_Ray_Uni_254.jpg',
-      'Images/Intenso_Ray_Uni_260.jpg',
-      'Images/Intenso_Ray_Uni_314.jpg',
-    ]
-  },
-  {
-    title: 'E-com Visual System',
-    tags: ['Prompt Eng.', 'Fashion', 'Production'],
-    category: 'Production',
-    link: 'projects/ecom-visual-system.html',
-    images: [
-      'Images/Intenso_Ray_Influencer_041.jpg',
-      'Images/Intenso_Ray_Influencer_091.jpg',
-      'Images/Intenso_Ray_Influencer_232.jpg',
-      'Images/Intenso_Ray_Influencer_246.jpg',
-      'Images/Intenso_Ray_Influencer_281.jpg',
-      'Images/Intenso_Ray_Influencer_399.jpg',
-      'Images/Intenso_Ray_Influencer_448.jpg',
-    ]
-  },
-  {
-    title: 'Brand Identity — Luxury',
-    tags: ['Identity', 'Luxury', 'Typography'],
-    category: 'Identity',
-    link: 'projects/brand-identity-luxury.html',
-    images: [
-      'Images/Intenso_Ray_Promenade_051.jpg',
-      'Images/Intenso_Ray_Promenade_103.jpg',
-      'Images/Intenso_Ray_Promenade_125.jpg',
-      'Images/Intenso_Ray_Promenade_221.jpg',
-      'Images/Intenso_Ray_Promenade_296.jpg',
-      'Images/Intenso_Ray_Spaziergang_161.jpg',
-      'Images/Intenso_Ray_Spaziergang_395.jpg',
-      'Images/Intenso_Ray_Spaziergang_635.jpg',
-    ]
-  }
-];
-
 const grid = document.getElementById('worksGrid');
 
 PROJECTS.forEach(proj => {
-  proj.images.forEach(src => {
-    const card = document.createElement('a');
-    card.className = 'work-card';
-    card.href = proj.link;
-    card.dataset.category = proj.category;
-    card.innerHTML = `
-      <img class="work-img" src="${src}" alt="${proj.title}" loading="lazy">
-      <div class="work-overlay">
-        <div class="work-overlay-title">${proj.title}</div>
-        <div class="work-overlay-tags">
-          ${proj.tags.map(t => `<span class="ptag">${t}</span>`).join('')}
-        </div>
+  const src = proj.folder + '/' + (proj.cover || proj.images[0]);
+  const link = 'projects/project.html?slug=' + proj.slug;
+  const card = document.createElement('a');
+  card.className = 'work-card';
+  card.href = link;
+  card.dataset.category = proj.category;
+  card.innerHTML = `
+    <img class="work-img" src="${src}" alt="${proj.title}" loading="lazy">
+    <div class="work-overlay">
+      <div class="work-overlay-title">${proj.title}</div>
+      <div class="work-overlay-tags">
+        ${proj.tags.map(t => `<span class="ptag">${t}</span>`).join('')}
       </div>
-      <div class="work-cat-badge">${proj.category}</div>
-    `;
-    grid.appendChild(card);
-  });
+    </div>
+    <div class="work-cat-badge">${proj.category}</div>
+  `;
+  grid.appendChild(card);
 });
 
 function applyFilter(f) {
