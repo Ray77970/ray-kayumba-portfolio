@@ -391,18 +391,20 @@ gsap.registerPlugin(ScrollTrigger);
     centerTrack(rightTrack, Array.from(rightItems), 0);
   });
 
-  ScrollTrigger.create({
-    trigger: '#fxOuter',
-    start: 'top top',
-    end: 'bottom bottom',
-    pin: '#fxPin',
-    pinSpacing: true,
-    onUpdate(self) {
-      if (isAnim) return;
-      const target = Math.min(TOTAL - 1, Math.floor(self.progress * TOTAL));
-      if (target !== currentFx) changeSection(target);
-    }
-  });
+  if (window.innerWidth > 768) {
+    ScrollTrigger.create({
+      trigger: '#fxOuter',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: '#fxPin',
+      pinSpacing: true,
+      onUpdate(self) {
+        if (isAnim) return;
+        const target = Math.min(TOTAL - 1, Math.floor(self.progress * TOTAL));
+        if (target !== currentFx) changeSection(target);
+      }
+    });
+  }
 })();
 </script>
 <script>
