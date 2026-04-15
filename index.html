@@ -216,6 +216,28 @@
 
       </div>
 
+      <!-- Mobile swipe info -->
+      <div class="fx-mobile-info" id="fxMobileInfo">
+        <div class="fx-mobile-titles">
+          <span class="fx-mobile-title active">Nullify App Design</span>
+          <span class="fx-mobile-title">MAK Betreuungen</span>
+          <span class="fx-mobile-title">Kaiv Coffee</span>
+          <span class="fx-mobile-title">Sereno Campaign</span>
+        </div>
+        <div class="fx-mobile-cats">
+          <span class="fx-mobile-cat active">UI/UX · App Design</span>
+          <span class="fx-mobile-cat">Branding · Identity</span>
+          <span class="fx-mobile-cat">AI · Branding</span>
+          <span class="fx-mobile-cat">AI · Fashion</span>
+        </div>
+        <div class="fx-dots">
+          <span class="fx-dot active"></span>
+          <span class="fx-dot"></span>
+          <span class="fx-dot"></span>
+          <span class="fx-dot"></span>
+        </div>
+      </div>
+
       <!-- Progress -->
       <div class="fx-progress">
         <div class="fx-progress-nums">
@@ -403,6 +425,45 @@ gsap.registerPlugin(ScrollTrigger);
         const target = Math.min(TOTAL - 1, Math.floor(self.progress * TOTAL));
         if (target !== currentFx) changeSection(target);
       }
+    });
+  } else {
+    // Mobile swipe
+    const pin = document.getElementById('fxPin');
+    const mobileTitles = document.querySelectorAll('.fx-mobile-title');
+    const mobileCats   = document.querySelectorAll('.fx-mobile-cat');
+    const dots         = document.querySelectorAll('.fx-dot');
+
+    function updateMobileUI(idx) {
+      mobileTitles.forEach((el, i) => el.classList.toggle('active', i === idx));
+      mobileCats.forEach((el, i)   => el.classList.toggle('active', i === idx));
+      dots.forEach((el, i)         => el.classList.toggle('active', i === idx));
+    }
+    updateMobileUI(0);
+
+    // Hook into changeSection to also update mobile UI
+    const _origChange = changeSection;
+    window._fxChangeMobile = updateMobileUI;
+
+    let tx = 0, swiped = false;
+    pin.addEventListener('touchstart', e => {
+      tx = e.touches[0].clientX;
+      swiped = false;
+    }, { passive: true });
+    pin.addEventListener('touchmove', e => {
+      if (Math.abs(e.touches[0].clientX - tx) > 12) swiped = true;
+    }, { passive: true });
+    pin.addEventListener('touchend', e => {
+      const delta = tx - e.changedTouches[0].clientX;
+      if (Math.abs(delta) > 50) {
+        const next = delta > 0
+          ? Math.min(TOTAL - 1, currentFx + 1)
+          : Math.max(0, currentFx - 1);
+        changeSection(next);
+        updateMobileUI(next);
+      }
+    }, { passive: true });
+    document.getElementById('fxLink').addEventListener('click', e => {
+      if (swiped) e.preventDefault();
     });
   }
 })();

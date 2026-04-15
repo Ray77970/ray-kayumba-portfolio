@@ -319,12 +319,20 @@ footer{border-top:1px solid var(--border);padding:22px 32px;display:flex;justify
 .fx-progress-fill{position:absolute;inset:0 auto 0 0;width:0%;background:rgba(255,255,255,.7);transition:width .4s ease}
 @media(max-width:768px){
   .fx-outer{height:auto}
-  .fx-pin{position:relative;height:75vh}
-  .fx-layout{padding:0 20px}
+  .fx-pin{position:relative;height:80vh}
+  .fx-layout{display:none}
+  .fx-progress{display:none}
   .fx-item-cat{display:none}
-  .fx-progress{left:20px;right:20px;bottom:28px}
   .fx-bg-img{inset:0;height:100%;width:100%;object-fit:cover}
   nav{position:fixed!important;top:0;left:0;right:0;z-index:500}
+  .fx-mobile-info{display:flex;flex-direction:column;gap:6px;position:absolute;bottom:28px;left:20px;right:20px;z-index:4;pointer-events:none}
+  .fx-mobile-title{display:none;font-family:'Instrument Sans',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em}
+  .fx-mobile-title.active{display:block}
+  .fx-mobile-cat{display:none;font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase}
+  .fx-mobile-cat.active{display:block}
+  .fx-dots{display:flex;gap:6px;margin-top:10px}
+  .fx-dot{width:20px;height:2px;background:rgba(255,255,255,.25);border-radius:2px;transition:background .3s,width .3s}
+  .fx-dot.active{background:#fff;width:32px}
 }
 
 /* ── project pages ── */
